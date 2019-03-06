@@ -33,7 +33,7 @@ def ping_devices(addresses):
 if __name__ == '__main__':
     addresses = ['192.168.1.{}'.format(i) for i in range(200,211)]
 
-    state = {a: State(False, None) for a in addresses}
+    state = {a: State(False, time()) for a in addresses}
 
     while(True):
         active_devices, inactive_devices = ping_devices(addresses)
