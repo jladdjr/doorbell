@@ -52,11 +52,11 @@ if __name__ == '__main__':
                     note_on_timing = ""
                     time_away = 0
                 else:
-                    time_away = time() - state[device].inactive_time
-                    note_on_timing = '(away {0} seconds)'.format(time_away)
+                    time_away = (time() - state[device].inactive_time) // 60  # In minutes
+                    note_on_timing = '(away {0} minutes)'.format(time_away)
                 print('{0} came online {1}'.format(device, note_on_timing))
 
-                if time_away > 60 * 15:
+                if time_away > 15:
                     os.system('notify {} is home'.format(device))
                     os.system('text_steph')
                     os.system('text_jim')
