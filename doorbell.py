@@ -74,7 +74,7 @@ if __name__ == '__main__':
                     note_on_timing = '(away {0} minutes)'.format(time_away)
                 print('{0} came online {1}'.format(get_identity(device), note_on_timing))
 
-                if time_away > 30:
+                if time_away > 20:
                     os.system('notify {} is home'.format(get_identity(device)))
 
         sleep(5)
