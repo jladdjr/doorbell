@@ -34,9 +34,20 @@ if __name__ == '__main__':
     addresses = ['192.168.1.{}'.format(i) for i in range(200,211)]
 
     state = {a: State(False, time()) for a in addresses}
+    last_check = time()
+    def initialize_state():
+        for a in addresses:
+            state[a] = State(False, time())
 
+    initialize_state()
     while(True):
         active_devices, inactive_devices = ping_devices(addresses)
+        if time() - last_check > 60:
+            # reset times
+            initialize_state()
+            print('Resuming checks after sleep.. \o/')
+            last_check = time()
+            continue
 
         for device in inactive_devices:
             if state[device].active:
@@ -56,7 +67,7 @@ if __name__ == '__main__':
                     note_on_timing = '(away {0} minutes)'.format(time_away)
                 print('{0} came online {1}'.format(device, note_on_timing))
 
-                if time_away > 15:
+                if time_away > 30:
                     os.system('notify {} is home'.format(device))
                     os.system('text_steph')
                     os.system('text_jim')
