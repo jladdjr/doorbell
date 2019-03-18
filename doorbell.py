@@ -76,5 +76,7 @@ if __name__ == '__main__':
 
                 if time_away > 20:
                     os.system('notify {} is home'.format(get_identity(device)))
+                    os.system('text_steph')
+                    os.system('text_jim')
 
         sleep(5)
