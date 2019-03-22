@@ -7,7 +7,8 @@ from time import sleep, time
 debug = False
 
 address_to_name_map = {'192.168.1.2': 'Jim',
-                       '192.168.1.3': 'Stephanie'}
+                       '192.168.1.3': 'Stephanie',
+                       '192.168.1.4': 'Claudia'}
 
 class State:
     def __init__(self, active=False, inactive_time=None):
@@ -37,7 +38,7 @@ def get_identity(address):
     return address_to_name_map.get(address, address)
 
 if __name__ == '__main__':
-    addresses = ['192.168.1.{}'.format(i) for i in range(2,4)]
+    addresses = ['192.168.1.{}'.format(i) for i in range(2,5)]
 
     state = {a: State(False, time()) for a in addresses}
     last_check = time()
