@@ -38,7 +38,7 @@ def get_identity(address):
     return address_to_name_map.get(address, address)
 
 if __name__ == '__main__':
-    addresses = ['192.168.1.{}'.format(i) for i in range(2,5)]
+    addresses = ['192.168.1.{}'.format(i) for i in range(3,8)]
 
     state = {a: State(False, time()) for a in addresses}
     last_check = time()
@@ -77,7 +77,7 @@ if __name__ == '__main__':
 
                 if time_away > 20:
                     os.system('notify {} is home'.format(get_identity(device)))
-                    os.system('text_steph')
-                    os.system('text_jim')
+                    os.system('text_jim {} is home'.format(get_identity(device)))
+                    os.system('text_steph {} is home'.format(get_identity(device)))
 
         sleep(5)
